@@ -17,6 +17,9 @@ jobs:
       - store_artifacts:
           path: report/
           destination: python_app
+      - run: |
+          curl https://circleci.com/api/v1.1/project/github/cupidline/RestAssured_Python/latest/artifacts?circle-token=xoxp-246836257924-853166129012-895821502261-65c170fa090c0eb3744c345b9848205c
+
 workflows:
   version: 2
   commit:
