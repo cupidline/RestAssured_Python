@@ -10,7 +10,7 @@ def test_get_user():
     resp = requests.get(login()["urlBase"] +'/api/users/2',headers=headers)
     
     # Validate response headers and body contents, e.g. status code.
-    assert resp.status_code == 201
+    assert resp.status_code == 202
     #respJson = json.loads(resp.text)
 
     
