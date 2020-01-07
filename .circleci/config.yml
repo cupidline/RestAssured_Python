@@ -1,0 +1,34 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.6
+    steps:
+      - checkout
+      - run:
+          command: |
+            sudo pip install django-rest-assured
+            sudo pip install -U pytest
+            sudo pip install pytest-html
+      - run:
+          name: Running tests
+          command: |
+            pytest -sv --html report/report.html
+      - store_artifacts:
+          path: report/
+          destination: python_app
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - build
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 1 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build
